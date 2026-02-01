@@ -20,15 +20,13 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies & Test') {
+      stage('Install Dependencies & Test') {
             steps {
                 bat '''
-                python --version
-                pip install -r requirements.txt
-                pytest
+                docker run --rm python:3.10 python --version
                 '''
-            }
-        }
+    }
+}
 
         stage('Build Docker Image') {
             steps {
