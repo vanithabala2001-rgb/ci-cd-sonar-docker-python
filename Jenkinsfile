@@ -16,7 +16,7 @@ pipeline {
         stage('Code Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/<your-username>/<your-python-repo>.git'
+                    url: 'https://github.com/vanithabala2001-rgb/ci-cd-sonar-docker-python.git'
             }
         }
 
@@ -41,13 +41,13 @@ pipeline {
         stage('Docker Login & Push') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'vikkram-dockerhub-token',
+                    credentialsId: 'vanitha_dockerhub_token',
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
                     bat '''
                     docker login -u %DOCKER_USER% -p %DOCKER_PASS%
-                    docker tag %IMAGE_NAME% %DOCKER_REPO%:latest
+                    docker tag %IMAGE_NAME% %DOCKERHUB_REPO%:latest
                     docker push %DOCKER_REPO%:latest
                     '''
                 }
