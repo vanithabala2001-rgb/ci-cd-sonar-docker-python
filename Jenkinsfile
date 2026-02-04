@@ -46,7 +46,7 @@ pipeline {
                     bat '''
                     docker login -u %DOCKER_USER% -p %DOCKER_PASS%
                     docker tag %IMAGE_NAME% %DOCKERHUB_REPO%:latest
-                    docker push %DOCKER_REPO%:latest
+                    docker push %DOCKERHUB_REPO%:latest
                     '''
                 }
             }
